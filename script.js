@@ -1,10 +1,24 @@
 const canvas = $('canvas');
 const context = canvas.getContext('2d');
 
-var player = {
-	position: new Vector(0, 0),
-	size: new Vector(16, 16),
-	speed: new Vector(0, 0)
-};
+var player = new Sprite();
 
-context.drawImage($('#player'), 10, 10);
+draw();
+
+document.body.addEventListener('keydown', function(e) {
+	if (e.keyCode === 38) {
+		player.position.y -= player.speed;
+	}
+
+	if (e.keyCode === 37) {
+		player.position.x -= player.speed;
+	}
+
+	if (e.keyCode === 40) {
+		player.position.y += player.speed;
+	}
+
+	if (e.keyCode === 39) {
+		player.position.x += player.speed;
+	}
+});

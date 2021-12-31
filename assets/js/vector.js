@@ -1,31 +1,35 @@
-Vector = function(x, y) {
-    return [x, y];
-}
+class Vector {
+    constructor(x, y) {
+        this.x = x;
+        this.y = y;
+    }
 
-var x = 0;
-var y = 1;
+    add(v) {
+        this.x += v.x;
+        this.y += v.y;
+    }
 
-Vector.prototype.add = function(vec) {
-    this[x] += vec[x];
-    this[y] += vec[y];
-}
+    sub(v) {
+        this.x -= v.x;
+        this.y -= v.y;
+    }
 
-Vector.prototype.sub = function(vec) {
-    this[x] -= vec[x];
-    this[y] -= vec[y];
-}
+    mul(v) {
+        this.x *= v.x;
+        this.y *= v.y;
+    }
 
-Vector.prototype.mul = function(vec) {
-    this[x] *= vec[x];
-    this[y] *= vec[y];
-}
+    div(v) {
+        this.x /= v.x;
+        this.y /= v.y;
+    }
 
-Vector.prototype.div = function(vec) {
-    this[x] /= vec[x];
-    this[y] /= vec[y];
-}
+    mod(v) {
+        this.x %= v.x;
+        this.y %= v.y;
+    }
 
-Vector.prototype.mod = function(vec) {
-    this[x] %= vec[x];
-    this[y] %= vec[y];
+    toArray() {
+        return [this.x, this.y];
+    }
 }
