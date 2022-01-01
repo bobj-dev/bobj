@@ -15,12 +15,16 @@ class Sprite {
         if (obj.hasOwnProperty('speed')) {
             this.speed = obj.speed;
         } else {
-            this.speed = 8;
+            this.speed = new Vector(0, 0);
         }
     }
 
     draw() {
         context.drawImage(this.image, ...this.position.toArray(), 16, 16);
+    }
+
+    update() {
+        this.position.add(this.speed);
     }
 }
 
@@ -31,5 +35,6 @@ var clear = function() {
 var draw = function() {
     clear();
     player.draw();
+    player.update();
     requestAnimationFrame(draw);
 }

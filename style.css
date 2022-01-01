@@ -5,11 +5,6 @@ body {
     padding: 0;
 }
 
-canvas[resize] {
-    width: 100vw;
-    height: 100vh;
-}
-
 canvas#game {
     display: block;
     image-rendering: pixelated;
@@ -18,4 +13,8 @@ canvas#game {
 .hidden {
     display: none;
     visibility: hidden;
+}
+
+.resize {
+    size: 100%;
 }
