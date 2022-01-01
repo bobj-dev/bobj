@@ -4,7 +4,7 @@ const context = canvas.getContext('2d');
 canvas.width = window.innerWidth;
 canvas.height = window.innerHeight;
 
-var player = new Sprite();
+var player = new Sprite({image: $('#player')});
 
 window.onkeydown = function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp') {
