@@ -28,12 +28,8 @@ class Sprite {
     }
 }
 
-var clear = function() {
-    context.clearRect(0, 0, canvas.width, canvas.height)
-}
-
-var draw = function() {
-    clear();
+draw = function() {
+    context.clearRect(0, 0, canvas.width, canvas.height);
     player.draw();
     player.update();
     requestAnimationFrame(draw);

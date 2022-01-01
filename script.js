@@ -1,9 +1,6 @@
 const canvas = $('canvas');
 const context = canvas.getContext('2d');
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
-
 var player = new Sprite({image: $('#player')});
 
 window.onkeydown = function(e) {
@@ -24,7 +21,7 @@ window.onkeydown = function(e) {
 	}
 };
 
-window.onkeyup = function (e) {
+window.onkeyup = function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp') {
 		player.speed.y = 0;
 	}
@@ -42,10 +39,7 @@ window.onkeyup = function (e) {
 	}
 }
 
-window.onresize = function(e) {
-	canvas.width = window.innerWidth;
-	canvas.height = window.innerHeight;
-}
+canvas.width = window.innerWidth;
+canvas.height = window.innerHeight;
 
 draw();
-
