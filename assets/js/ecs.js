@@ -1,5 +1,11 @@
 class Sprite {
     constructor(obj = {}) {
+        if (obj.hasOwnProperty('direction')) {
+            this.direction = obj.direction;
+        } else {
+            this.direction = 1;
+        }
+
         if (obj.hasOwnProperty('image')) {
             this.image = obj.image;
         } else {
@@ -20,10 +26,16 @@ class Sprite {
     }
 
     draw() {
-        context.drawImage(this.image, ...this.position.toArray(), 16, 16);
+        context.translate(this.position.x + (this.direction == -1 ? 16 : 0), this.position.y);
+        context.scale(this.direction, 1);
+        
+        context.drawImage(this.image, 0, 0, 16, 16);
+        
+        context.setTransform(1, 0, 0, 1, 0, 0);
     }
 
     update() {
+        this.direction = Math.sign(this.speed.x) || this.direction;
         this.position.add(this.speed);
     }
 }
