@@ -1,11 +1,7 @@
+const gravity = 5;
+
 class Sprite {
     constructor(obj = {}) {
-        if (obj.hasOwnProperty('direction')) {
-            this.direction = obj.direction;
-        } else {
-            this.direction = 1;
-        }
-
         if (obj.hasOwnProperty('image')) {
             this.image = obj.image;
         } else {
@@ -23,6 +19,20 @@ class Sprite {
         } else {
             this.speed = new Vector(0, 0);
         }
+
+        if (obj.hasOwnProperty('direction')) {
+            this.direction = obj.direction;
+        } else {
+            this.direction = 1;
+        }
+
+        if (obj.hasOwnProperty('velocity')) {
+            this.velocity = obj.velocity;
+        } else {
+            this.velocity = new Vector(5, gravity);
+        }
+
+        this.gravity = 0;
     }
 
     draw() {
@@ -31,12 +41,18 @@ class Sprite {
         
         context.drawImage(this.image, 0, 0, 16, 16);
         
-        context.setTransform(1, 0, 0, 1, 0, 0);
+        context.resetTransform();
     }
 
     update() {
         this.direction = Math.sign(this.speed.x) || this.direction;
-        this.position.add(this.speed);
+        
+        this.position.x += this.speed.x;
+        this.position.y += this.speed.y + this.gravity;
+
+        while (this.position.y + 16 >= canvas.height) {
+            this.position.y--;
+        }
     }
 }
 
@@ -45,4 +61,9 @@ draw = function() {
     player.draw();
     player.update();
     requestAnimationFrame(draw);
+}
+
+resize = function() {
+    canvas.width = window.innerWidth;
+    canvas.height = window.innerHeight;
 }

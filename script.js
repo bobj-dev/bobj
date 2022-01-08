@@ -1,28 +1,28 @@
 const canvas = $('canvas');
 const context = canvas.getContext('2d');
 
-var player = new Sprite({image: $('#player')});
+let player = new Sprite({image: $('#player')});
 
-window.onkeydown = function(e) {
-	if (e.key === 'w' || e.key === 'ArrowUp') {
-		player.speed.y = -5;
+window.addEventListener('keydown', function(e) {
+	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
+		player.speed.y = -player.velocity.y;
 	}
 
 	if (e.key === 'a' || e.key === 'ArrowLeft') {
-		player.speed.x = -5;
+		player.speed.x = -player.velocity.x;
 	}
 
 	if (e.key === 's' || e.key === 'ArrowDown') {
-		player.speed.y = 5;
+		player.speed.y = player.velocity.y;
 	}
 
 	if (e.key === 'd' || e.key === 'ArrowRight') {
-		player.speed.x = 5;
+		player.speed.x = player.velocity.x;
 	}
-};
+});
 
-window.onkeyup = function(e) {
-	if (e.key === 'w' || e.key === 'ArrowUp') {
+window.addEventListener('keyup', function(e) {
+	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
 		player.speed.y = 0;
 	}
 
@@ -37,9 +37,9 @@ window.onkeyup = function(e) {
 	if (e.key === 'd' || e.key === 'ArrowRight') {
 		player.speed.x = 0;
 	}
-}
+});
 
-canvas.width = window.innerWidth;
-canvas.height = window.innerHeight;
+window.addEventListener('load', resize);
+window.addEventListener('resize', resize);
 
 draw();
