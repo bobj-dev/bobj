@@ -1,8 +1,10 @@
+'use strict';
+
 const gravity = 5;
 
 var sprites = {};
 
-class Sprite {
+const Sprite = class Sprite {
     constructor(obj = {}) {
         this.image = obj.image ?? $('#error');
 
@@ -37,7 +39,7 @@ class Sprite {
     }
 }
 
-draw = function() {
+const draw = function() {
     context.drawImage($('#background'), 0, 0);
 
     Object.values(sprites).forEach(function(sprite) {
@@ -48,7 +50,7 @@ draw = function() {
     requestAnimationFrame(draw);
 }
 
-resize = function() {
+const resize = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
 }

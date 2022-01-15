@@ -1,3 +1,5 @@
+'use strict';
+
 const canvas = $('canvas');
 const context = canvas.getContext('2d');
 
