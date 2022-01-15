@@ -3,7 +3,7 @@ const context = canvas.getContext('2d');
 
 const player = sprites.player = new Sprite({image: $('#player')});
 
-$('#background').src = `http://placehold.it/${window.innerWidth}x${window.innerHeight}.png`;
+$('#background').src = `https://via.placeholder.com/${window.innerWidth}x${window.innerHeight}.png`;
 
 window.addEventListener('keydown', function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
