@@ -1,37 +1,18 @@
 const gravity = 5;
 
+var sprites = {};
+
 class Sprite {
     constructor(obj = {}) {
-        if (obj.hasOwnProperty('image')) {
-            this.image = obj.image;
-        } else {
-            this.image = $('#error');
-        }
+        this.image = obj.image ?? $('#error');
 
-        if (obj.hasOwnProperty('position')) {
-            this.position = obj.position;
-        } else {
-            this.position = new Vector(0, 0);
-        }
+        this.position = obj.position ?? new Vector(0, 0);
 
-        if (obj.hasOwnProperty('speed')) {
-            this.speed = obj.speed;
-        } else {
-            this.speed = new Vector(0, 0);
-        }
+        this.speed = obj.speed ?? new Vector(0, 0);
+        this.velocity = obj.velocity ?? new Vector(5, gravity);
 
-        if (obj.hasOwnProperty('direction')) {
-            this.direction = obj.direction;
-        } else {
-            this.direction = 1;
-        }
-
-        if (obj.hasOwnProperty('velocity')) {
-            this.velocity = obj.velocity;
-        } else {
-            this.velocity = new Vector(5, gravity);
-        }
-
+        this.direction = 1;
+        
         this.gravity = 0;
     }
 
@@ -57,9 +38,13 @@ class Sprite {
 }
 
 draw = function() {
-    context.clearRect(0, 0, canvas.width, canvas.height);
-    player.draw();
-    player.update();
+    context.drawImage($('#background'), 0, 0);
+
+    Object.values(sprites).forEach(function(sprite) {
+        sprite.update();
+        sprite.draw();
+    });
+
     requestAnimationFrame(draw);
 }
 

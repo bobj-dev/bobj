@@ -1,7 +1,9 @@
 const canvas = $('canvas');
 const context = canvas.getContext('2d');
 
-let player = new Sprite({image: $('#player')});
+const player = sprites.player = new Sprite({image: $('#player')});
+
+$('#background').src = `http://placehold.it/${window.innerWidth}x${window.innerHeight}.png`;
 
 window.addEventListener('keydown', function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
