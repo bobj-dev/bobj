@@ -5,41 +5,39 @@ const context = canvas.getContext('2d');
 
 const player = sprites.player = new Sprite({image: $('#player')});
 
-$('#background').src = `https://via.placeholder.com/${window.innerWidth}x${window.innerHeight}.png`;
-
 window.addEventListener('keydown', function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
-		player.speed.y = -player.velocity.y;
+		player.dy = -gravity + 1;
 	}
 
 	if (e.key === 'a' || e.key === 'ArrowLeft') {
-		player.speed.x = -player.velocity.x;
+		player.dx = -player.speed;
 	}
 
 	if (e.key === 's' || e.key === 'ArrowDown') {
-		player.speed.y = player.velocity.y;
+		player.dy = gravity;
 	}
 
 	if (e.key === 'd' || e.key === 'ArrowRight') {
-		player.speed.x = player.velocity.x;
+		player.dx = player.speed;
 	}
 });
 
 window.addEventListener('keyup', function(e) {
 	if (e.key === 'w' || e.key === 'ArrowUp' || e.key === ' ') {
-		player.speed.y = 0;
+		player.dy = 0;
 	}
 
 	if (e.key === 'a' || e.key === 'ArrowLeft') {
-		player.speed.x = 0;
+		player.dx = 0;
 	}
 
 	if (e.key === 's' || e.key === 'ArrowDown') {
-		player.speed.y = 0;
+		player.dy = 0;
 	}
 
 	if (e.key === 'd' || e.key === 'ArrowRight') {
-		player.speed.x = 0;
+		player.dx = 0;
 	}
 });
 

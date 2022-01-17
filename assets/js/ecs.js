@@ -7,19 +7,21 @@ var sprites = {};
 const Sprite = class Sprite {
     constructor(obj = {}) {
         this.image = obj.image ?? $('#error');
+        
+        this.x = 0;
+        this.y = 0;
+        this.dx = 0;
+        this.dy = 0;
 
-        this.position = obj.position ?? new Vector(0, 0);
-
-        this.speed = obj.speed ?? new Vector(0, 0);
-        this.velocity = obj.velocity ?? new Vector(5, gravity);
+        this.speed = 5;
 
         this.direction = 1;
-        
+
         this.gravity = 0;
     }
 
     draw() {
-        context.translate(this.position.x + (this.direction == -1 ? 16 : 0), this.position.y);
+        context.translate(this.x + (this.direction == -1 ? 16 : 0), this.y);
         context.scale(this.direction, 1);
         
         context.drawImage(this.image, 0, 0, 16, 16);
@@ -28,13 +30,13 @@ const Sprite = class Sprite {
     }
 
     update() {
-        this.direction = Math.sign(this.speed.x) || this.direction;
+        this.direction = Math.sign(this.dx) || this.direction;
         
-        this.position.x += this.speed.x;
-        this.position.y += this.speed.y + this.gravity;
+        this.x += this.dx;
+        this.y += this.dy + this.gravity;
 
-        while (this.position.y + 16 >= canvas.height) {
-            this.position.y--;
+        while (this.y + 16 >= canvas.height) {
+            this.y--;
         }
     }
 }
@@ -53,4 +55,6 @@ const draw = function() {
 const resize = function() {
     canvas.width = window.innerWidth;
     canvas.height = window.innerHeight;
+
+    $('#background').src = `https://via.placeholder.com/${canvas.width}x${canvas.height}.png`;
 }
