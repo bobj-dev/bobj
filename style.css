@@ -5,3 +5,17 @@ div {
     transform: translateX(-50%) translateY(-50%);
     text-align: center;
 }
+
+p {
+    font-family: "Trebuchet MS", sans-serif;
+}
+
+a:link, a:visited {
+    color: #0645AD;
+    text-decoration: none;
+}
+
+a:hover, a:active {
+    color: #0645AD;
+    text-decoration: underline;
+}
